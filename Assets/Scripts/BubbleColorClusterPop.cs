@@ -129,6 +129,10 @@ public sealed class BubbleColorClusterPop : MonoBehaviour
         if (requireMinGroupSize && group.Count < Mathf.Max(1, minGroupSize))
             return;
 
+        // LOL-11: award points for this cluster before destroying bubbles
+        if (PoploScoreManager.Instance != null)
+            PoploScoreManager.Instance.AddScoreForCluster(group.Count);
+
         for (int i = 0; i < group.Count; i++)
         {
             if (group[i] != null)
